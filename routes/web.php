@@ -6,12 +6,17 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\OrderController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/urun/{product}', [HomeController::class, 'show'])->name('front.product.show');
 
 Route::post('/sepet/ekle', [CartController::class, 'add'])->name('cart.add');
 Route::get('/sepet', [CartController::class, 'index'])->name('cart.index');
+
+Route::get('/odeme', [CheckoutController::class, 'index'])->name('checkout.index');
+Route::post('/odeme/tamamla', [CheckoutController::class, 'store'])->name('checkout.store');
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'authenticate']);
@@ -36,4 +41,7 @@ Route::prefix('admin')->middleware(['admin'])->group(function () {
     Route::get('/products/edit/{product}', [ProductController::class, 'edit'])->name('admin.products.edit');
     Route::put('/products/update/{product}', [ProductController::class, 'update'])->name('admin.products.update');
     Route::delete('/products/delete/{product}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
+
+    Route::get('/orders', [OrderController::class, 'index'])->name('admin.orders.index');
+    Route::put('/orders/status/{order}', [OrderController::class, 'updateStatus'])->name('admin.orders.updateStatus');
 });

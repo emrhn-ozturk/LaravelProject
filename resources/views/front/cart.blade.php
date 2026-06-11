@@ -35,7 +35,8 @@
                 </tfoot>
             </table>
             <div class="text-end mt-3">
-                <button class="btn btn-primary btn-lg fw-bold">Siparişi Tamamla</button>
+                
+            <a href="{{ route('checkout.index') }}" class="btn btn-primary btn-lg fw-bold">Siparişi Tamamla</a>
             </div>
         @else
             <div class="alert alert-warning text-center m-0 border-0 shadow-sm">

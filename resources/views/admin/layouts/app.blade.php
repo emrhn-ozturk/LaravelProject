@@ -21,6 +21,9 @@
                 <li class="nav-item mb-2">
                     <a href="{{ route('admin.products.index') }}" class="nav-link text-white">Ürünler</a>
                 </li>
+                <li class="nav-item mb-2">
+                    <a href="{{ route('admin.orders.index') }}" class="nav-link text-white fw-bold">Siparişler</a>
+                </li>
                 
             </ul>
             <hr>

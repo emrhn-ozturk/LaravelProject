@@ -37,6 +37,9 @@
     </nav>
 
     <main class="container my-5 flex-grow-1">
+        @if(session('success'))
+            <div class="alert alert-success fw-bold shadow-sm">{{ session('success') }}</div>
+        @endif
         @yield('content')
     </main>
 
