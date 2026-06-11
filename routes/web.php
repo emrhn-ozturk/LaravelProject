@@ -3,11 +3,15 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\ProductController; 
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CartController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/urun/{product}', [HomeController::class, 'show'])->name('front.product.show');
+
+Route::post('/sepet/ekle', [CartController::class, 'add'])->name('cart.add');
+Route::get('/sepet', [CartController::class, 'index'])->name('cart.index');
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'authenticate']);
@@ -32,5 +36,4 @@ Route::prefix('admin')->middleware(['admin'])->group(function () {
     Route::get('/products/edit/{product}', [ProductController::class, 'edit'])->name('admin.products.edit');
     Route::put('/products/update/{product}', [ProductController::class, 'update'])->name('admin.products.update');
     Route::delete('/products/delete/{product}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
-    
 });
