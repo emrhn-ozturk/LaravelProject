@@ -18,6 +18,9 @@
                 <li class="nav-item mb-2">
                     <a href="{{ route('admin.categories.index') }}" class="nav-link text-white">Kategoriler</a>
                 </li>
+                <li class="nav-item mb-2">
+                    <a href="{{ route('admin.products.index') }}" class="nav-link text-white">Ürünler</a>
+                </li>
                 
             </ul>
             <hr>
