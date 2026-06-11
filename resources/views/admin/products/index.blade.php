@@ -34,7 +34,14 @@
                     <td>{{ $product->stock }}</td>
                     <td>{{ $product->user->name ?? 'Bilinmiyor' }}</td>
                     <td>
-                        <span class="badge bg-secondary">İşlemler</span>
+                        <div class="d-flex gap-2">
+                            <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-sm btn-warning">Düzenle</a>
+                            <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST" onsubmit="return confirm('Bu ürünü silmek istediğinize emin misiniz?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger">Sil</button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
                 @empty

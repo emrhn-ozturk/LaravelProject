@@ -9,27 +9,28 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'authenticate']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-
 Route::prefix('admin')->middleware(['admin'])->group(function () {
-    
     
     Route::get('/dashboard', function () {
         return view('admin.dashboard');
     })->name('admin.dashboard');
 
-    
     Route::get('/categories', [CategoryController::class, 'index'])->name('admin.categories.index');
     Route::get('/categories/create', [CategoryController::class, 'create'])->name('admin.categories.create');
     Route::post('/categories/store', [CategoryController::class, 'store'])->name('admin.categories.store');
-
+    Route::get('/categories/edit/{category}', [CategoryController::class, 'edit'])->name('admin.categories.edit');
+    Route::put('/categories/update/{category}', [CategoryController::class, 'update'])->name('admin.categories.update');
+    Route::delete('/categories/delete/{category}', [CategoryController::class, 'destroy'])->name('admin.categories.destroy');
     
     Route::get('/products', [ProductController::class, 'index'])->name('admin.products.index');
     Route::get('/products/create', [ProductController::class, 'create'])->name('admin.products.create');
     Route::post('/products/store', [ProductController::class, 'store'])->name('admin.products.store');
+    Route::get('/products/edit/{product}', [ProductController::class, 'edit'])->name('admin.products.edit');
+    Route::put('/products/update/{product}', [ProductController::class, 'update'])->name('admin.products.update');
+    Route::delete('/products/delete/{product}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
     
-}); 
+});

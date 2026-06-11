@@ -6,11 +6,9 @@
     <a href="{{ route('admin.categories.create') }}" class="btn btn-primary">Yeni Kategori Ekle</a>
 </div>
 
-
 @if(session('success'))
     <div class="alert alert-success">{{ session('success') }}</div>
 @endif
-
 
 <div class="card shadow-sm">
     <div class="card-body">
@@ -28,7 +26,14 @@
                     <td>{{ $category->id }}</td>
                     <td>{{ $category->name }}</td>
                     <td>
-                        <span class="badge bg-secondary">İşlemler Eklenecek</span>
+                        <div class="d-flex gap-2">
+                            <a href="{{ route('admin.categories.edit', $category->id) }}" class="btn btn-sm btn-warning">Düzenle</a>
+                            <form action="{{ route('admin.categories.destroy', $category->id) }}" method="POST" onsubmit="return confirm('Bu kategoriyi silmek istediğinize emin misiniz?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger">Sil</button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
                 @empty
