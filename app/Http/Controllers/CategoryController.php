@@ -35,6 +35,6 @@ class CategoryController extends Controller
         ]);
 
         
-        return redirect()->route('admin.categories.index')->with('success', 'Kategori başarıyla eklendi usta!');
+        return redirect()->route('admin.categories.index')->with('success', 'Kategori başarıyla eklendi!');
     }
 }
